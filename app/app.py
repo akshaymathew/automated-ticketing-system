@@ -140,15 +140,15 @@ if __name__ == '__main__':
 
 
 
-    ats = AutomatedTicketingSystem(6)
-    ats.assign_ticket("KA-01-HH-1234", 21)
-    ats.assign_ticket("PB-01-HH-1234", 21)
-    ats.get_slot_numbers_by_driver_age(21)
-    ats.assign_ticket("PB-01-TG-2341", 40)
-    ats.get_slot_number_by_plate_number("PB-01-HH-1234")
-    ats.unassign_ticket(2)
-    #ats.leave(2)
-    ats.assign_ticket("HR-29-TG-3098", 39)
-    ats.get_registration_numbers(18)
-    exit()
+    # ats = AutomatedTicketingSystem(6)
+    # ats.assign_ticket("KA-01-HH-1234", 21)
+    # ats.assign_ticket("PB-01-HH-1234", 21)
+    # ats.get_slot_numbers_by_driver_age(21)
+    # ats.assign_ticket("PB-01-TG-2341", 40)
+    # ats.get_slot_number_by_plate_number("PB-01-HH-1234")
+    # ats.unassign_ticket(2)
+    # #ats.leave(2)
+    # ats.assign_ticket("HR-29-TG-3098", 39)
+    # ats.get_registration_numbers(18)
+    # exit()
 
