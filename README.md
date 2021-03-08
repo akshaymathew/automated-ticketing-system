@@ -20,7 +20,8 @@ On a high level the systems suppports:
 - Get parking slot for a particular vehicle registration number - Time complexity O(1)
 - Get slot numbers of all drivers of a particular age- TIme complexity O(N)
 ## Running tests
-Code smells can be identified using SonarLint. It's avaiableas a plugin to IntelliJ IDE
+Code smells can be identified using SonarLint. It's avaiableas a plugin to IntelliJ IDE. The unit tests are available in `tests/tests.py`. Simply run `tests.py` to see the unit test results
+
 ## Running application
 Open terminal in the `app` directory of this project and run the command `python app.py <relative path-to-input-file>`. In this project's case run `python app.py ../input.txt`
 ## Authors/Acknowledgements
