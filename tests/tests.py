@@ -7,7 +7,7 @@ from ticket import Ticket
 from parking_spot import ParkingSpot
 from parking_lot import ParkingLot
 
-class TestStringMethods(unittest.TestCase):
+class TestClassMethods(unittest.TestCase):
 
     def test_ticket_creation(self):
         x = Ticket().create("KA-01-HH-1234", 3, 34)
