@@ -4,6 +4,7 @@
 from ticket import Ticket
 from parking_spot import ParkingSpot
 from parking_lot import ParkingLot
+import os,sys
 class AutomatedTicketingSystem(object):
     def __init__(self,capacity):
         self.pk = ParkingLot(capacity)
@@ -15,11 +16,6 @@ class AutomatedTicketingSystem(object):
         else:
             print ("Car with vehicle registration number ",response[1]," has been parked at slot number ",str(response[0]+1))
     def unassign_ticket(self,slot):
-        dict = self.pk.get_ticket_list()
-        #print (dict)
-        #print (str(registration_number))
-        #print (dict[registration_number])
-        #age = dict[registration_number][1]
         slot_index = slot - 1
         reg_no, age = self.pk.return_ticket(slot_index)
         #print (response)
@@ -32,9 +28,7 @@ class AutomatedTicketingSystem(object):
         dict = self.pk.get_ticket_list()
         result = []
         for key in dict:
-            #print (key)
             if dict[key][1] == age:
-                #print ("Yes")
                 result.append(key)
         if len(result) == 0:
             print ("No slot numbers available")
@@ -66,6 +60,86 @@ class AutomatedTicketingSystem(object):
         return result
 
 if __name__ == '__main__':
+    args = sys.argv
+    file = args[1]
+    #file = "D:\Task\\automated-ticketing-system\\input.txt"
+    #REad from file
+    if not os.path.exists(file):
+        print("File does not exist")
+
+    file_obj = open(file,"r")
+    k =0
+    #print (file_obj.readline())
+    for x in file_obj:
+        k = k+1
+        #print (x)
+        command = x.split(" ")
+        #print (command)
+        n = len(command)
+        instruction = command[0]
+        instruction = instruction.strip()
+        if instruction == "Create_parking_lot":
+            #print ("Initailise")
+            if len(command)>1:
+                capacity = int(command[1].strip())
+                print (capacity)
+                ats = AutomatedTicketingSystem(capacity)
+            else:
+                print ("Wrong command")
+                break
+        elif instruction == "Park":
+            #print("park")
+            if (len(command)>3):
+                reg_number = command[1].strip()
+                if (command[2].strip() == "driver_age"):
+                    age =int(command[3])
+                    ats.assign_ticket(reg_number, age)
+                else:
+                    print("Wrong command")
+                    break
+            else:
+                print("Wrong command")
+                break
+        elif instruction == "Slot_numbers_for_driver_of_age":
+            #print ("Slot by age")
+            if (len(command) > 1):
+                age = int(command[1].strip())
+                ats.get_slot_numbers_by_driver_age(age)
+            else:
+                print ("wrong command")
+                break
+        elif instruction == "Slot_number_for_car_with_number":
+            #print ("Slot by number")
+            if (len(command) > 1):
+                reg_no = command[1].strip()
+                ats.get_slot_number_by_plate_number(reg_no)
+            else:
+                print ("Wrong commad")
+                break
+
+        elif instruction == "Leave":
+            #print ("deallocate ticket")
+            if (len(command)>1):
+                slot = int(command[1].strip())
+                ats.unassign_ticket(slot)
+            else:
+                print ("wrong command")
+                break
+        elif instruction == "Vehicle_registration_number_for_driver_of_age":
+            #print ("vehicle number by age")
+            if (len(command)>1):
+                age = int(command[1].strip())
+                ats.get_registration_numbers(age)
+            else:
+                print ("Wrong command")
+                break
+        else:
+            print ("Wrong instruction")
+            break
+    exit()
+
+
+
     ats = AutomatedTicketingSystem(6)
     ats.assign_ticket("KA-01-HH-1234", 21)
     ats.assign_ticket("PB-01-HH-1234", 21)
@@ -77,17 +151,4 @@ if __name__ == '__main__':
     ats.assign_ticket("HR-29-TG-3098", 39)
     ats.get_registration_numbers(18)
     exit()
-    # y_list = ats.get_ticket_list()
-    # print(y_list)
-    # for obj in y_list:
-    #     print (obj.get_slot())
-    #     print (obj.get_age())
-    # print (pk.return_ticket("KA"))
-    print("Final")
-    print(ats.assign_ticket("KP", 22))
-    #ats = AutomatedTicketingSystem(3)
-    print (ats.get_registration_numbers(21))
-    print(ats.get_slot_number_by_plate_number("IN"))
-    print(ats.get_slot_numbers_by_driver_age(21))
-    #app.run(host="0.0.0.0", port="5123")
 

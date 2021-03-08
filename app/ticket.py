@@ -20,10 +20,7 @@ class Ticket(object):
         self.driver_age = value
 
     def create(self, registration_number, slot_number, driver_age):
-        ticket = Ticket()
-        # ticket.__registration_number(registration_number)
-        # ticket.__slot_number(slot_number)
-        # ticket.__driver_age(driver_age)
+        #ticket = Ticket()
         self.slot_number = slot_number
         self.registration_number = registration_number
         self.driver_age = driver_age
@@ -35,7 +32,3 @@ class Ticket(object):
         return self.driver_age
     def get_registration(self):
         return self.registration_number
-#t = Ticket()
-#t.create("1",2,34)
-# print (t.get_registration())
-# print (t)

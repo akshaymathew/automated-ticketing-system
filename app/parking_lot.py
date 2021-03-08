@@ -36,9 +36,6 @@ class ParkingLot(object):
 
 
     def return_ticket(self,slot):
-        # if registration_number not in self.ticket_dict:
-        #     return -1
-        #slot, age = self.ticket_dict[registration_number]
         # Find slot and mark it as vacant
         for i in range(len(self.heap)):
             if (self.heap[i].slot == slot):
@@ -47,7 +44,6 @@ class ParkingLot(object):
         # for i in range(0, len(self.heap)):
         #     print (self.heap[i].print_me())
         #     print()
-        #response = self.ticket_dict[]
         #find registration number for that slot
         reg_no = "-1"
         age = -1
